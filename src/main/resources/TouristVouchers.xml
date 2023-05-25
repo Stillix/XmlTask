@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:TouristVouchers xmlns:tns="http://www.example.org/TouristVouchers" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/TouristVouchers TouristVouchers.xsd ">
+
+    <Voucher id="1">
+        <VoucherType>Recreation Voucher</VoucherType>
+        <Country>France</Country>
+        <Transport>train</Transport>
+        <NumberDays>9</NumberDays>
+        <NumberNights>8</NumberNights>
+        <Hotel>
+            <BasicHotelCharacteristics>
+                <Name> </Name>
+                <Star>4</Star>
+                <Food>HB</Food>
+                <Room>1</Room>
+            </BasicHotelCharacteristics>
+        </Hotel>
+        <Cost>500</Cost>
+    </Voucher>
+
+    <Voucher id="2">
+        <VoucherType>Recreation Voucher</VoucherType>
+        <Country>Spain</Country>
+        <Transport>avia</Transport>
+        <NumberDays> </NumberDays>
+        <NumberNights> </NumberNights>
+        <Hotel>
+            <ExclusiveHotelCharacteristics>
+                <Name> </Name>
+                <Star>5</Star>
+                <Food>FB</Food>
+                <Room>2</Room>
+                <Sport>Gym,VolleyballSquare,BasketSquare</Sport>
+            </ExclusiveHotelCharacteristics>
+        </Hotel>
+        <Cost>1135</Cost>
+    </Voucher>
+</tns:TouristVouchers>

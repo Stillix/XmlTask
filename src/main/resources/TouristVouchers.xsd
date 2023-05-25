@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema  targetNamespace="http://www.example.org/TouristVouchers"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.example.org/TouristVouchers">
+
+    <element name="TouristVouchers">
+        <complexType>
+            <sequence>
+                <element name="Voucher" type="tns:TypeVoucher" maxOccurs="unbounded" minOccurs="1"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="Voucher">
+        <attribute name="id" type="xs:ID" use="required"/>
+        <sequence>
+            <element name="VoucherType" type="tns:VoucherType"/>
+            <element name="Country" type="string"/>
+            <element name="Transport" type="tns:TransportType"/>
+            <element name="NumberDays" type="positiveInteger"/>
+            <element name="NumberNights" type="positiveInteger"/>
+            <element name="Hotel" type="string">
+                <complexType>
+                    <choice>
+                        <element name="StandardCharacteristics" type="tns:BasicHotelCharacteristics"/>
+                        <element name="ExclusiveCharacteristics" type="tns:ExclusiveCharacteristicsType"/>
+                    </choice>
+                </complexType>
+            </element>
+            <element name="Cost"/>
+        </sequence>
+    </complexType>
+
+    <simpleType name="ID">
+        <restriction base="xs:integer">
+            <pattern value="\d{1,5}"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="VoucherType">
+        <restriction base="string">
+            <enumeration value="Recreation Voucher"></enumeration>
+            <enumeration value="Health Voucher"></enumeration>
+            <enumeration value="Guided Tour Voucher"></enumeration>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="TransportType">
+        <restriction base="string">
+            <enumeration value="avia"></enumeration>
+            <enumeration value="avto"></enumeration>
+            <enumeration value="liner"></enumeration>
+            <enumeration value="train"></enumeration>
+        </restriction>
+    </simpleType>
+
+    <complexType name="BasicHotelCharacteristics">
+        <sequence>
+            <element name="Name" type="string"/>
+            <element name="Star" type="tns:StarType"/>
+            <element name="Food" type="tns:FoodType"/>
+            <element name="Room" type="tns:RoomType">
+                <attribute name="TV" type="boolean" use="optional"/>
+                <attribute name="Conditioner" type="boolean" use="required"/>
+            </element>
+        </sequence>
+    </complexType>
+
+    <complexType name="ExclusiveCharacteristicsType">
+        <complexContent>
+            <extension base="tns:BasicHotelCharacteristics">
+                <sequence>
+                    <element name="Sport" type="tns:SportType"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <simpleType name="SportType">
+        <restriction base="string">
+            <enumeration value="BasketSquare"></enumeration>
+            <enumeration value="VolleyballSquare"></enumeration>
+            <enumeration value="Gym"></enumeration>
+            <enumeration value="Gym,VolleyballSquare,BasketSquare"></enumeration>
+        </restriction>
+    </simpleType>
+
+    <complexType>
+        <sequence>
+            <element name="Star" type="positiveInteger" maxOccurs="unbounded" minOccurs="1"/>
+            <element name="Food" type="tns:FoodType"/>
+            <element name="Room" type="tns:RoomType">
+                <attribute name="TV" type="boolean" use="optional"/>
+                <attribute name="Conditioner" type="boolean" use="required"/>
+            </element>
+        </sequence>
+    </complexType>
+
+    <simpleType name="StarType">
+        <restriction base="integer">
+            <pattern value="[1-5]"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="RoomType">
+        <restriction base="integer">
+            <pattern value="[1-3]{1}"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="FoodType">
+        <restriction base="string">
+            <enumeration value="BB"></enumeration>
+            <enumeration value="HB"></enumeration>
+            <enumeration value="FB"></enumeration>
+            <enumeration value="AL"></enumeration>
+        </restriction>
+    </simpleType>
+
+</schema>
