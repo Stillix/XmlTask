@@ -1,39 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema  targetNamespace="http://www.example.org/TouristVouchers"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.example.org/TouristVouchers">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/TouristVouchers"
+        xmlns:tns="http://www.example.org/TouristVouchers">
 
     <element name="TouristVouchers">
         <complexType>
             <sequence>
-                <element name="Voucher" type="tns:TypeVoucher" maxOccurs="unbounded" minOccurs="1"/>
+                <element name="Voucher" type="tns:Voucher" maxOccurs="unbounded" minOccurs="1"/>
             </sequence>
         </complexType>
     </element>
 
     <complexType name="Voucher">
-        <attribute name="id" type="xs:ID" use="required"/>
         <sequence>
             <element name="VoucherType" type="tns:VoucherType"/>
             <element name="Country" type="string"/>
             <element name="Transport" type="tns:TransportType"/>
             <element name="NumberDays" type="positiveInteger"/>
             <element name="NumberNights" type="positiveInteger"/>
-            <element name="Hotel" type="string">
+            <element name="Hotel">
                 <complexType>
                     <choice>
-                        <element name="StandardCharacteristics" type="tns:BasicHotelCharacteristics"/>
-                        <element name="ExclusiveCharacteristics" type="tns:ExclusiveCharacteristicsType"/>
+                        <element name="BasicHotelCharacteristics" type="tns:BasicHotelCharacteristics"/>
+                        <element name="ExclusiveCharacteristics" type="tns:ExclusiveCharacteristics"/>
                     </choice>
                 </complexType>
             </element>
             <element name="Cost"/>
         </sequence>
+        <attribute name="id" type="ID" use="required"/>
     </complexType>
-
-    <simpleType name="ID">
-        <restriction base="xs:integer">
-            <pattern value="\d{1,5}"/>
-        </restriction>
-    </simpleType>
 
     <simpleType name="VoucherType">
         <restriction base="string">
@@ -57,14 +52,20 @@
             <element name="Name" type="string"/>
             <element name="Star" type="tns:StarType"/>
             <element name="Food" type="tns:FoodType"/>
-            <element name="Room" type="tns:RoomType">
-                <attribute name="TV" type="boolean" use="optional"/>
-                <attribute name="Conditioner" type="boolean" use="required"/>
-            </element>
+            <element name="Room" type="tns:Apartment"/>
         </sequence>
     </complexType>
 
-    <complexType name="ExclusiveCharacteristicsType">
+    <complexType name="Apartment">
+        <sequence>
+            <element name="TV" type="boolean"/>
+            <element name="Conditioner" type="boolean"/>
+            <element name="RoomAmount" type="tns:RoomAmount"/>
+        </sequence>
+        <attribute name="Balcony" type="boolean"/>
+    </complexType>
+
+    <complexType name="ExclusiveCharacteristics">
         <complexContent>
             <extension base="tns:BasicHotelCharacteristics">
                 <sequence>
@@ -83,24 +84,13 @@
         </restriction>
     </simpleType>
 
-    <complexType>
-        <sequence>
-            <element name="Star" type="positiveInteger" maxOccurs="unbounded" minOccurs="1"/>
-            <element name="Food" type="tns:FoodType"/>
-            <element name="Room" type="tns:RoomType">
-                <attribute name="TV" type="boolean" use="optional"/>
-                <attribute name="Conditioner" type="boolean" use="required"/>
-            </element>
-        </sequence>
-    </complexType>
-
     <simpleType name="StarType">
         <restriction base="integer">
             <pattern value="[1-5]"/>
         </restriction>
     </simpleType>
 
-    <simpleType name="RoomType">
+    <simpleType name="RoomAmount">
         <restriction base="integer">
             <pattern value="[1-3]{1}"/>
         </restriction>
