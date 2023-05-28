@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:TouristVouchers xmlns:tns="http://www.example.org/TouristVouchers"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                     xsi:schemaLocation="http://www.example.org/TouristVouchers TouristVouchers.xsd ">
+    <Voucher id="vch1">
+        <VoucherType>Recreation Voucher</VoucherType>
+        <Country>Spain</Country>
+        <Transport>avia</Transport>
+        <NumberDays>9</NumberDays>
+        <ArrivalDate>2023-05-30T09:00:00</ArrivalDate>
+        <Hotel>
+            <BasicHotelCharacteristics>
+                <Name>Serras Barcelona</Name>
+                <Star>3</Star>
+                <Food>BB</Food>
+                <Room WIFI="false" Balcony="false">
+                    <TV>false</TV>
+                    <Conditioner>false</Conditioner>
+                    <RoomAmount>3</RoomAmount>
+                </Room>
+            </BasicHotelCharacteristics>
+        </Hotel>
+        <Cost>730</Cost>
+    </Voucher>
+
+    <Voucher id="vch2">
+        <VoucherType>Guided Tour Voucher</VoucherType>
+        <Country>France</Country>
+        <Transport>avto</Transport>
+        <NumberDays>9</NumberDays>
+        <ArrivalDate>2023-07-14T17:40:00</ArrivalDate>
+        <Hotel>
+            <ExclusiveCharacteristics>
+                <Name>Mercer Hotel Barcelona</Name>
+                <Star>5</Star>
+                <Food>FB</Food>
+                <Room Balcony="true" WIFI="true">
+                    <TV>true</TV>
+                    <Conditioner>true</Conditioner>
+                    <RoomAmount>2</RoomAmount>
+                </Room>
+                <Services>Bar, Swimming Pool, Fitness Center,parking</Services>
+            </ExclusiveCharacteristics>
+        </Hotel>
+        <Cost>1500</Cost>
+    </Voucher>
+
+</tns:TouristVouchers>

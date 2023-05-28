@@ -16,7 +16,7 @@
             <element name="Country" type="string"/>
             <element name="Transport" type="tns:TransportType"/>
             <element name="NumberDays" type="positiveInteger"/>
-            <element name="NumberNights" type="positiveInteger"/>
+            <element name="ArrivalDate" type="dateTime"/>
             <element name="Hotel">
                 <complexType>
                     <choice>
@@ -62,6 +62,7 @@
             <element name="Conditioner" type="boolean"/>
             <element name="RoomAmount" type="tns:RoomAmount"/>
         </sequence>
+        <attribute name="WIFI" type="boolean"/>
         <attribute name="Balcony" type="boolean"/>
     </complexType>
 
@@ -69,24 +70,28 @@
         <complexContent>
             <extension base="tns:BasicHotelCharacteristics">
                 <sequence>
-                    <element name="Sport" type="tns:SportType"/>
+                    <element name="Services" type="tns:Services"/>
                 </sequence>
             </extension>
         </complexContent>
     </complexType>
 
-    <simpleType name="SportType">
+    <simpleType name="Services">
         <restriction base="string">
-            <enumeration value="BasketSquare"></enumeration>
-            <enumeration value="VolleyballSquare"></enumeration>
-            <enumeration value="Gym"></enumeration>
-            <enumeration value="Gym,VolleyballSquare,BasketSquare"></enumeration>
+            <enumeration value="Bar, Swimming Pool, Fitness Center,parking"></enumeration>
+            <enumeration value="Bar"></enumeration>
+            <enumeration value="Fitness Center"></enumeration>
+            <enumeration value="Parking"></enumeration>
         </restriction>
     </simpleType>
 
     <simpleType name="StarType">
-        <restriction base="integer">
-            <pattern value="[1-5]"/>
+        <restriction base="positiveInteger">
+            <enumeration value="1"></enumeration>
+            <enumeration value="2"></enumeration>
+            <enumeration value="3"></enumeration>
+            <enumeration value="4"></enumeration>
+            <enumeration value="5"></enumeration>
         </restriction>
     </simpleType>
 
